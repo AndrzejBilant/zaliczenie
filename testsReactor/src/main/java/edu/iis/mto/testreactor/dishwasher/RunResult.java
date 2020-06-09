@@ -1,5 +1,7 @@
 package edu.iis.mto.testreactor.dishwasher;
 
+import java.util.Objects;
+
 public class RunResult {
 
     private final int runMinutes;
@@ -20,6 +22,20 @@ public class RunResult {
 
     public static Builder builder() {
         return new Builder();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RunResult result = (RunResult) o;
+        return runMinutes == result.runMinutes &&
+                status == result.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(runMinutes, status);
     }
 
     public static final class Builder {
